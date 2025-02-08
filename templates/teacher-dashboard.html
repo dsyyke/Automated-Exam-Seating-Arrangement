@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Teacher Dashboard</h2>
+    {% if teacher_info %}
+        <p>Assigned Class: {{ teacher_info.class_assigned }}</p>
+    {% else %}
+        <p>No class assigned.</p>
+    {% endif %}
+{% endblock %}
