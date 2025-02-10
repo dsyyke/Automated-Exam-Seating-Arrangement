@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Functions - Seatify</title>
+    <title>Admin Login - Seatify</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
@@ -64,7 +64,7 @@
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             width: 100%;
-            max-width: 800px;
+            max-width: 400px;
             animation: fadeIn 0.8s ease-out;
             position: relative;
             overflow: hidden;
@@ -94,89 +94,82 @@
             color: white;
             font-family: 'Playfair Display', serif;
             font-size: 2.2em;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-align: center;
             font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .form-group {
-            margin-bottom: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            align-items: center;
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
         }
 
-        .input-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2em;
         }
 
-        label {
-            color: white;
-            font-size: 16px;
-            font-weight: 500;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        input, select {
-            padding: 12px 20px;
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px 15px 45px;
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
+            border-radius: 30px;
             color: white;
             font-size: 16px;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            min-width: 200px;
         }
 
-        input[type="date"] {
-            padding: 10px 20px;
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        input:focus, select:focus {
+        .input-group input:focus {
             outline: none;
             border-color: rgba(255, 255, 255, 0.6);
             background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
-        select {
-            cursor: pointer;
-        }
-
-        option {
-            background: #2a5298;
-            color: white;
-        }
-
-        .logout-button {
+        button, .back-button {
             background: rgba(255, 255, 255, 0.2);
             color: white;
-            padding: 8px 20px;
+            padding: 15px 30px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 30px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
         }
 
-        .logout-button:hover {
+        button:hover, .back-button:hover {
             background: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .logout-button i {
+        .back-button {
+            padding: 8px 20px;
+            font-size: 14px;
+            width: auto;
+        }
+
+        .back-button i {
             margin-right: 8px;
         }
 
@@ -191,29 +184,26 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             .box {
                 padding: 30px 20px;
-                margin: 20px;
             }
             
-            .form-group {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .input-wrapper {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            input, select {
-                min-width: 150px;
-            }
-
             h3 {
                 font-size: 1.8em;
-                margin-bottom: 30px;
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .back-button {
+                padding: 6px 15px;
+                font-size: 13px;
             }
         }
     </style>
@@ -221,61 +211,26 @@
 <body>
     <nav class="navbar">
         <a href="index.html" class="logo">Seatify</a>
-        <button class="logout-button" onclick="confirmLogout()">
-            <i class="fas fa-sign-out-alt"></i>Logout
-        </button>
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>Back
+        </a>
     </nav>
 
     <div class="container">
         <div class="box">
-            <h3>Admin Functions</h3>
-            <form>
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <label for="date">Date</label>
-                        <input type="date" id="date" required>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <label for="FN_AN">FN/AN</label>
-                        <select name="FN_AN" id="FN_AN" required>
-                            <option value="">Select Session</option>
-                            <option>FN</option>
-                            <option>AN</option>
-                        </select>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <label for="int_ext">Internal / External</label>
-                        <select name="int_ext" id="int_ext" required>
-                            <option value="">Select Type</option>
-                            <option>Internal</option>
-                            <option>External</option>
-                        </select>
-                    </div>
+            <h3>Admin Login</h3>
+            <form action="/admin_login" method="POST" autocomplete="off">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" placeholder="Username" required autocomplete="off">
                 </div>
-
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <label for="department">Department</label>
-                        <select name="department" id="department" required>
-                            <option value="">Select Department</option>
-                            <option>Computer Science</option>
-                            <option>Electrical Engineering</option>
-                            <option>Mechanical Engineering</option>
-                        </select>
-                    </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="Password" required autocomplete="new-password">
                 </div>
+                <button type="submit">Login</button>
             </form>
         </div>
     </div>
-
-    <script>
-        function confirmLogout() {
-            if (confirm("Are you sure you want to logout?")) {
-                window.location.href = "index.html";
-            }
-        }
-    </script>
 </body>
 </html>
